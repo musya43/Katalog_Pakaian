@@ -37,8 +37,11 @@ class ProductAdapter :
 
         holder.btnDelete.setOnClickListener {
 
-            deleteItem(position)
+            val currentPosition = holder.adapterPosition
 
+            if (currentPosition != RecyclerView.NO_POSITION) {
+                deleteItem(currentPosition)
+            }
         }
     }
 
