@@ -54,7 +54,7 @@ class AddProductActivity : AppCompatActivity() {
                 // Default gambar sementara
                 intent.putExtra(
                     "image",
-                    R.drawable.hoodie
+                    R.drawable.baru
                 )
 
                 setResult(Activity.RESULT_OK, intent)
