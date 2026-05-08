@@ -34,13 +34,25 @@ class DetailActivity : AppCompatActivity() {
 
         btnCart.setOnClickListener {
 
+            val product = Product(
+                name ?: "",
+                price ?: "",
+                image,
+                desc ?: ""
+            )
+
+            // tambah ke cart
+            CartManager.cartItems.add(product)
+
             Toast.makeText(
                 this,
                 "Produk masuk keranjang",
                 Toast.LENGTH_SHORT
             ).show()
 
-            startActivity(Intent(this, CartActivity::class.java))
+            startActivity(
+                Intent(this, CartActivity::class.java)
+            )
         }
     }
 }

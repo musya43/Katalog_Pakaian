@@ -20,9 +20,11 @@
             android:theme="@style/Theme.Katalog_Pakaian">
 
             <intent-filter>
+
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+
             </intent-filter>
 
         </activity>
@@ -30,17 +32,20 @@
         <!-- Detail Product -->
         <activity
             android:name=".DetailActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Katalog_Pakaian" />
 
         <!-- Cart -->
         <activity
             android:name=".CartActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Katalog_Pakaian" />
 
         <!-- Add Product -->
         <activity
             android:name=".AddProductActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Katalog_Pakaian" />
 
     </application>
 

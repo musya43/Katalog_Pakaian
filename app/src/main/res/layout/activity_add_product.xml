@@ -2,49 +2,90 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="20dp">
 
+        <!-- Title -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tambah Produk"
-            android:textSize="24sp"
-            android:textStyle="bold"/>
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="#111111"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- Nama Produk -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama Produk"
+            android:textStyle="bold"
+            android:textColor="#333333"/>
 
         <EditText
-            android:id="@+id/etName"
+            android:id="@+id/etProductName"
             android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:drawable/editbox_background"
+            android:hint="Masukkan nama produk"
+            android:padding="12dp"/>
+
+        <!-- Harga -->
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Nama Produk"
+            android:text="Harga Produk"
+            android:textStyle="bold"
+            android:textColor="#333333"
             android:layout_marginTop="16dp"/>
 
         <EditText
-            android:id="@+id/etPrice"
+            android:id="@+id/etProductPrice"
             android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:drawable/editbox_background"
+            android:hint="Masukkan harga produk"
+            android:inputType="text"
+            android:padding="12dp"/>
+
+        <!-- Deskripsi -->
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Harga Produk"
-            android:layout_marginTop="12dp"/>
+            android:text="Deskripsi Produk"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginTop="16dp"/>
 
         <EditText
-            android:id="@+id/etDesc"
+            android:id="@+id/etProductDescription"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Deskripsi Produk"
-            android:layout_marginTop="12dp"/>
+            android:layout_height="120dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:drawable/editbox_background"
+            android:gravity="top"
+            android:hint="Masukkan deskripsi produk"
+            android:padding="12dp"/>
 
+        <!-- Tombol Simpan -->
         <Button
             android:id="@+id/btnSaveProduct"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="#5B8DEF"
             android:text="Simpan Produk"
-            android:layout_marginTop="24dp"
-            android:backgroundTint="#5B8DEF"/>
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 
