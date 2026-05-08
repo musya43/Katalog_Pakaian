@@ -5,12 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.katalog_pakaian.Product
 
-class ProductAdapter(
-    private val productList: MutableList<Product>
-) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
+class ProductAdapter :
+    ListAdapter<Product, ProductAdapter.ProductViewHolder>(ProductDiffCallback()) {
 
     class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -30,7 +29,7 @@ class ProductAdapter(
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
 
-        val product = productList[position]
+        val product = getItem(position)
 
         holder.imgProduct.setImageResource(product.image)
         holder.txtName.text = product.name
@@ -38,13 +37,17 @@ class ProductAdapter(
 
         holder.btnDelete.setOnClickListener {
 
-            productList.removeAt(position)
-            notifyItemRemoved(position)
+            deleteItem(position)
 
         }
     }
 
-    override fun getItemCount(): Int {
-        return productList.size
+    fun deleteItem(position: Int) {
+
+        val newList = currentList.toMutableList()
+
+        newList.removeAt(position)
+
+        submitList(newList)
     }
 }

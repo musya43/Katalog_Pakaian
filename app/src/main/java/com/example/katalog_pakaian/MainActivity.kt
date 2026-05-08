@@ -101,7 +101,9 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = GridLayoutManager(this, 2)
 
         // Adapter
-        productAdapter = ProductAdapter(productList)
+        productAdapter = ProductAdapter()
+
+        productAdapter.submitList(productList)
 
         recyclerView.adapter = productAdapter
 
