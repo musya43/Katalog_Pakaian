@@ -61,10 +61,31 @@ class MainActivity : AppCompatActivity() {
         ),
 
         Product(
-            "Baru",
-            "Rp 890.000",
-            R.drawable.flannel,
-            "Kemeja flannel nyaman"
+            "Blazzer",
+            "Rp 390.000",
+            R.drawable.blazzer,
+            "Blazzer formal nyaman"
+        ),
+
+        Product(
+            "Cardigan",
+            "Rp 250.000",
+            R.drawable.cardigan,
+            "Cardigan rajut lembut"
+        ),
+
+        Product(
+            "Vest",
+            "Rp 220.000",
+            R.drawable.vest,
+            "Vest rajut aestetic"
+        ),
+
+        Product(
+            "Crop Shirt",
+            "Rp 180.000",
+            R.drawable.crop,
+            "Crop shirt fit to M"
         )
     )
 
