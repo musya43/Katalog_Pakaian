@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.katalog_pakaian.Product
 
 class ProductAdapter(
-    private val productList: List<Product>
+    private val productList: MutableList<Product>
 ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -17,6 +17,7 @@ class ProductAdapter(
         val imgProduct: ImageView = itemView.findViewById(R.id.imgProduct)
         val txtName: TextView = itemView.findViewById(R.id.txtProductName)
         val txtPrice: TextView = itemView.findViewById(R.id.txtProductPrice)
+        val btnDelete: ImageView = itemView.findViewById(R.id.btnDelete)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
@@ -34,6 +35,13 @@ class ProductAdapter(
         holder.imgProduct.setImageResource(product.image)
         holder.txtName.text = product.name
         holder.txtPrice.text = product.price
+
+        holder.btnDelete.setOnClickListener {
+
+            productList.removeAt(position)
+            notifyItemRemoved(position)
+
+        }
     }
 
     override fun getItemCount(): Int {
