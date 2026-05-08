@@ -1,14 +1,14 @@
 package com.example.katalog_pakaian
 
-import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageButton
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.katalog_pakaian.Product
+import com.example.katalog_pakaian.ProductAdapter
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,10 +16,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var productAdapter: ProductAdapter
     private lateinit var searchBar: EditText
     private lateinit var btnAddProduct: Button
-    private lateinit var btnCart: ImageButton
 
     private val productList = mutableListOf(
-
         Product(
             "Hoodie Black",
             "Rp 250.000",
@@ -80,7 +78,7 @@ class MainActivity : AppCompatActivity() {
             "Vest",
             "Rp 220.000",
             R.drawable.vest,
-            "Vest rajut aesthetic"
+            "Vest rajut aestetic"
         ),
 
         Product(
@@ -91,58 +89,32 @@ class MainActivity : AppCompatActivity() {
         )
     )
 
-    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         recyclerView = findViewById(R.id.recyclerProduct)
         searchBar = findViewById(R.id.etSearch)
         btnAddProduct = findViewById(R.id.btnAddProduct)
-        btnCart = findViewById(R.id.btnCart)
 
-        // Grid 2 kolom
+        // RecyclerView Grid 2 Kolom
         recyclerView.layoutManager = GridLayoutManager(this, 2)
 
-        // Adapter + Klik Product
-        productAdapter = ProductAdapter(productList) { product ->
+        // Adapter
+        productAdapter = ProductAdapter()
 
-            val intent = Intent(
-                this,
-                DetailActivity::class.java
-            )
-
-            intent.putExtra("name", product.name)
-            intent.putExtra("price", product.price)
-            intent.putExtra("image", product.image)
-            intent.putExtra("description", product.description)
-
-            startActivity(intent)
-        }
+        productAdapter.submitList(productList)
 
         recyclerView.adapter = productAdapter
 
         // Tombol tambah produk
         btnAddProduct.setOnClickListener {
 
-            val intent = Intent(
+            Toast.makeText(
                 this,
-                AddProductActivity::class.java
-            )
-
-            startActivity(intent)
-        }
-
-        // Tombol cart
-        btnCart.setOnClickListener {
-
-            val intent = Intent(
-                this,
-                CartActivity::class.java
-            )
-
-            startActivity(intent)
+                "Tambah produk berhasil diklik",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 }
