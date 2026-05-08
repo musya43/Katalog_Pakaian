@@ -29,6 +29,9 @@ class ProductAdapter(
         val txtPrice: TextView =
             itemView.findViewById(R.id.txtProductPrice)
 
+        val txtRating: TextView =
+            itemView.findViewById(R.id.txtRating)
+
         val btnDelete: ImageView =
             itemView.findViewById(R.id.btnDelete)
 
@@ -58,6 +61,7 @@ class ProductAdapter(
         holder.imgProduct.setImageResource(product.image)
         holder.txtName.text = product.name
         holder.txtPrice.text = product.price
+        holder.txtRating.text = "⭐ ${product.rating}"
 
         // Klik produk → detail
         holder.cardProduct.setOnClickListener {

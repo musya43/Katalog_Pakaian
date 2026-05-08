@@ -24,71 +24,91 @@ class MainActivity : AppCompatActivity() {
     private val productList = mutableListOf(
 
         Product(
+            1,
             "Hoodie Black",
             "Rp 250.000",
+            4.1f,
             R.drawable.hoodie,
             "Hoodie premium warna hitam"
         ),
 
         Product(
+            2,
             "Oversized T-Shirt",
             "Rp 150.000",
+            4.2f,
             R.drawable.tshirt,
             "Kaos oversized nyaman dipakai"
         ),
 
         Product(
+            3,
             "Cargo Pants",
             "Rp 300.000",
+            4.0f,
             R.drawable.cargo,
             "Celana cargo fashion pria"
         ),
 
         Product(
+            4,
             "Jacket Denim",
             "Rp 400.000",
+            3.5f,
             R.drawable.jacket,
             "Jaket denim casual"
         ),
 
         Product(
+            5,
             "Sweater Cream",
             "Rp 220.000",
+            4.3f,
             R.drawable.sweater,
             "Sweater warna cream"
         ),
 
         Product(
+            6,
             "Flannel Shirt",
             "Rp 180.000",
+            4.8f,
             R.drawable.flannel,
             "Kemeja flannel nyaman"
         ),
 
         Product(
+            7,
             "Blazzer",
             "Rp 390.000",
+            4.9f,
             R.drawable.blazzer,
             "Blazzer formal nyaman"
         ),
 
         Product(
+            8,
             "Cardigan",
             "Rp 250.000",
+            4.5f,
             R.drawable.cardigan,
             "Cardigan rajut lembut"
         ),
 
         Product(
+            9,
             "Vest",
             "Rp 220.000",
+            4.7f,
             R.drawable.vest,
             "Vest rajut aesthetic"
         ),
 
         Product(
+            10,
             "Crop Shirt",
             "Rp 180.000",
+            4.8f,
             R.drawable.crop,
             "Crop shirt fit to M"
         )
@@ -145,6 +165,7 @@ class MainActivity : AppCompatActivity() {
                 intent.putExtra("price", product.price)
                 intent.putExtra("image", product.image)
                 intent.putExtra("description", product.description)
+                intent.putExtra("rating", product.rating)
 
                 startActivity(intent)
             },
@@ -222,8 +243,10 @@ class MainActivity : AppCompatActivity() {
                 )
 
             val newProduct = Product(
+                productList.size + 1,
                 name,
                 price,
+                4.5f,
                 image,
                 description
             )
