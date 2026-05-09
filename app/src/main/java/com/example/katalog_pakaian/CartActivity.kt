@@ -35,7 +35,9 @@ class CartActivity : AppCompatActivity() {
                 adapter.submitList(
                     CartManager.cartItems.toList()
                 )
-            }
+            },
+
+            isCart = true
         )
 
         recyclerCart.adapter = adapter

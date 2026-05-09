@@ -1,5 +1,6 @@
 package com.example.katalog_pakaian
 
+import android.R.attr.onClick
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,12 +9,15 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.appcompat.app.AlertDialog
 
 class ProductAdapter(
 
     private val onClick: (Product) -> Unit,
 
-    private val onDelete: (Product) -> Unit
+    private val onDelete: (Product) -> Unit,
+
+    private val isCart: Boolean = false
 
 ) : ListAdapter<Product, ProductAdapter.ProductViewHolder>(ProductDiffCallback()) {
 
@@ -79,6 +83,31 @@ class ProductAdapter(
                 val deletedProduct = getItem(currentPosition)
 
                 onDelete(deletedProduct)
+            }
+        }
+
+        if (isCart) {
+
+            holder.itemView.setOnLongClickListener {
+
+                AlertDialog.Builder(holder.itemView.context)
+                    .setTitle("Hapus Produk")
+                    .setMessage("Yakin ingin menghapus produk dari keranjang?")
+                    .setPositiveButton("Ya") { _, _ ->
+
+                        val currentPosition = holder.bindingAdapterPosition
+
+                        if (currentPosition != RecyclerView.NO_POSITION) {
+
+                            val deletedProduct = getItem(currentPosition)
+
+                            onDelete(deletedProduct)
+                        }
+                    }
+                    .setNegativeButton("Batal", null)
+                    .show()
+
+                true
             }
         }
     }
