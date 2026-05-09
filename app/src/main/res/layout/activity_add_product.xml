@@ -11,7 +11,7 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-        <!-- Title -->
+        <!-- TITLE -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -21,13 +21,35 @@
             android:textColor="#111111"
             android:layout_marginBottom="24dp"/>
 
-        <!-- Nama Produk -->
+        <!-- PREVIEW IMAGE -->
+        <ImageView
+            android:id="@+id/imgPreview"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/baru"
+            android:scaleType="centerCrop"
+            android:background="#DDDDDD"/>
+
+        <!-- BUTTON PILIH GAMBAR -->
+        <Button
+            android:id="@+id/btnChooseImage"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="16dp"
+            android:text="Pilih Gambar"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#5B8DEF"/>
+
+        <!-- NAMA PRODUK -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nama Produk"
             android:textStyle="bold"
-            android:textColor="#333333"/>
+            android:textColor="#333333"
+            android:layout_marginTop="24dp"/>
 
         <EditText
             android:id="@+id/etProductName"
@@ -38,7 +60,7 @@
             android:hint="Masukkan nama produk"
             android:padding="12dp"/>
 
-        <!-- Harga -->
+        <!-- HARGA -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -57,7 +79,7 @@
             android:inputType="text"
             android:padding="12dp"/>
 
-        <!-- Deskripsi -->
+        <!-- DESKRIPSI -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -76,7 +98,7 @@
             android:hint="Masukkan deskripsi produk"
             android:padding="12dp"/>
 
-        <!-- Tombol Simpan -->
+        <!-- BUTTON SIMPAN -->
         <Button
             android:id="@+id/btnSaveProduct"
             android:layout_width="match_parent"

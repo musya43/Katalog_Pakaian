@@ -3,21 +3,26 @@ package com.example.katalog_pakaian
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlin.jvm.java
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var productAdapter: ProductAdapter
     private lateinit var searchBar: EditText
-    private lateinit var btnAddProduct: Button
+    private lateinit var btnAddProduct: FloatingActionButton
     private lateinit var btnCart: ImageButton
-    private var filteredList = mutableListOf<Product>()
+    private lateinit var bottomNavigation: BottomNavigationView
 
     private val ADD_PRODUCT_REQUEST = 1
 
@@ -123,12 +128,24 @@ class MainActivity : AppCompatActivity() {
         searchBar = findViewById(R.id.etSearch)
         btnAddProduct = findViewById(R.id.btnAddProduct)
         btnCart = findViewById(R.id.btnCart)
+        bottomNavigation = findViewById(R.id.bottomNavigation)
 
-        searchBar.addTextChangedListener(object : android.text.TextWatcher {
+        // SEARCH
+        searchBar.addTextChangedListener(object : TextWatcher {
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun beforeTextChanged(
+                s: CharSequence?,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {}
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            override fun onTextChanged(
+                s: CharSequence?,
+                start: Int,
+                before: Int,
+                count: Int
+            ) {
 
                 val query = s.toString().lowercase()
 
@@ -139,6 +156,7 @@ class MainActivity : AppCompatActivity() {
                 } else {
 
                     productList.filter {
+
                         it.name.lowercase().contains(query)
                     }
                 }
@@ -146,16 +164,17 @@ class MainActivity : AppCompatActivity() {
                 productAdapter.submitList(result.toList())
             }
 
-            override fun afterTextChanged(s: android.text.Editable?) {}
+            override fun afterTextChanged(s: Editable?) {}
         })
 
-        // Grid 2 kolom
-        recyclerView.layoutManager = GridLayoutManager(this, 2)
+        // GRID 2 KOLOM
+        recyclerView.layoutManager =
+            GridLayoutManager(this, 2)
 
-        // Adapter
+        // ADAPTER
         productAdapter = ProductAdapter(
 
-            // Klik item → buka detail
+            // Klik item → detail
             onClick = { product ->
 
                 val intent =
@@ -184,9 +203,11 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = productAdapter
 
         // tampilkan data awal
-        productAdapter.submitList(productList.toList())
+        productAdapter.submitList(
+            productList.toList()
+        )
 
-        // tombol tambah produk
+        // tambah produk
         btnAddProduct.setOnClickListener {
 
             val intent =
@@ -198,13 +219,53 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        // tombol cart
+        // cart
         btnCart.setOnClickListener {
 
             val intent =
                 Intent(this, CartActivity::class.java)
 
             startActivity(intent)
+        }
+
+        // bottom navigation
+        bottomNavigation.setOnItemSelectedListener {
+
+            when(it.itemId) {
+
+                R.id.nav_home -> {
+
+                    true
+                }
+
+                R.id.nav_favorite -> {
+
+                    val intent =
+                        Intent(
+                            this,
+                            FavoriteActivity::class.java
+                        )
+
+                    startActivity(intent)
+
+                    true
+                }
+
+                R.id.nav_profile -> {
+
+                    val intent =
+                        Intent(
+                            this,
+                            ProfileActivity::class.java
+                        )
+
+                    startActivity(intent)
+
+                    true
+                }
+
+                else -> false
+            }
         }
     }
 

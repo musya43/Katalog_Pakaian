@@ -13,12 +13,11 @@
         android:theme="@style/Theme.Katalog_Pakaian"
         tools:targetApi="31">
 
-        <!-- Splash Screen -->
+        <!-- SPLASH SCREEN -->
         <activity
-            android:name="SplashActivity"
+            android:name=".SplashActivity"
             android:exported="true"
-            android:theme="@style/Theme.Katalog_Pakaian"
-            tools:ignore="MissingClass">
+            android:theme="@style/Theme.Katalog_Pakaian">
 
             <intent-filter>
 
@@ -30,27 +29,39 @@
 
         </activity>
 
-        <!-- Main Activity -->
+        <!-- MAIN ACTIVITY -->
         <activity
             android:name=".MainActivity"
             android:exported="false"
             android:theme="@style/Theme.Katalog_Pakaian" />
 
-        <!-- Detail Product -->
+        <!-- DETAIL PRODUCT -->
         <activity
             android:name=".DetailActivity"
             android:exported="false"
             android:theme="@style/Theme.Katalog_Pakaian" />
 
-        <!-- Cart -->
+        <!-- CART -->
         <activity
             android:name=".CartActivity"
             android:exported="false"
             android:theme="@style/Theme.Katalog_Pakaian" />
 
-        <!-- Add Product -->
+        <!-- ADD PRODUCT -->
         <activity
             android:name=".AddProductActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Katalog_Pakaian" />
+
+        <!-- FAVORITE -->
+        <activity
+            android:name=".FavoriteActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Katalog_Pakaian" />
+
+        <!-- PROFILE -->
+        <activity
+            android:name=".ProfileActivity"
             android:exported="false"
             android:theme="@style/Theme.Katalog_Pakaian" />
 

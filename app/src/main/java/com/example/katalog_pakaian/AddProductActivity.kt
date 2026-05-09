@@ -2,10 +2,9 @@ package com.example.katalog_pakaian
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 
 class AddProductActivity : AppCompatActivity() {
@@ -14,27 +13,55 @@ class AddProductActivity : AppCompatActivity() {
     private lateinit var etPrice: EditText
     private lateinit var etDescription: EditText
     private lateinit var btnSave: Button
+    private lateinit var btnChooseImage: Button
+    private lateinit var imgPreview: ImageView
+
+    private var imageUri: Uri? = null
+
+    private val IMAGE_REQUEST_CODE = 100
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_product)
 
-        // Inisialisasi View
         etName = findViewById(R.id.etProductName)
         etPrice = findViewById(R.id.etProductPrice)
         etDescription = findViewById(R.id.etProductDescription)
         btnSave = findViewById(R.id.btnSaveProduct)
+        btnChooseImage = findViewById(R.id.btnChooseImage)
+        imgPreview = findViewById(R.id.imgPreview)
 
-        // Tombol simpan produk
+        // pilih gambar
+        btnChooseImage.setOnClickListener {
+
+            val intent =
+                Intent(Intent.ACTION_OPEN_DOCUMENT)
+
+            intent.addCategory(
+                Intent.CATEGORY_OPENABLE
+            )
+
+            intent.type = "image/*"
+
+            startActivityForResult(
+                intent,
+                IMAGE_REQUEST_CODE
+            )
+        }
+
+        // simpan produk
         btnSave.setOnClickListener {
 
             val name = etName.text.toString()
             val price = etPrice.text.toString()
             val description = etDescription.text.toString()
 
-            // Validasi input
-            if (name.isEmpty() || price.isEmpty() || description.isEmpty()) {
+            if (
+                name.isEmpty() ||
+                price.isEmpty() ||
+                description.isEmpty()
+            ) {
 
                 Toast.makeText(
                     this,
@@ -44,17 +71,16 @@ class AddProductActivity : AppCompatActivity() {
 
             } else {
 
-                // Kirim data ke MainActivity
                 val intent = Intent()
 
                 intent.putExtra("name", name)
                 intent.putExtra("price", price)
                 intent.putExtra("description", description)
 
-                // Default gambar sementara
+                // kirim URI gambar
                 intent.putExtra(
-                    "image",
-                    R.drawable.baru
+                    "imageUri",
+                    imageUri.toString()
                 )
 
                 setResult(Activity.RESULT_OK, intent)
@@ -67,6 +93,30 @@ class AddProductActivity : AppCompatActivity() {
 
                 finish()
             }
+        }
+    }
+
+    override fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent?
+    ) {
+
+        super.onActivityResult(
+            requestCode,
+            resultCode,
+            data
+        )
+
+        if (
+            requestCode == IMAGE_REQUEST_CODE &&
+            resultCode == RESULT_OK &&
+            data != null
+        ) {
+
+            imageUri = data.data
+
+            imgPreview.setImageURI(imageUri)
         }
     }
 }
