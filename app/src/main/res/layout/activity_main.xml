@@ -1,27 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#FFFFFF"
+    android:background="#F5F5F5"
     tools:context=".MainActivity">
 
-    <!-- Header -->
-    <TextView
-        android:id="@+id/txtTitle"
-        android:layout_width="wrap_content"
+    <!-- HEADER -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Fashion Catalog"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="#111111"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="16dp"/>
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="20dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
 
-    <!-- Search Bar -->
+        <!-- TITLE -->
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Fashion Catalog"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#111111"/>
+
+        <!-- CART BUTTON -->
+        <ImageButton
+            android:id="@+id/btnCart"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_menu_view"
+            android:contentDescription="Cart"/>
+    </LinearLayout>
+
+    <!-- SEARCH BAR -->
     <EditText
         android:id="@+id/etSearch"
         android:layout_width="match_parent"
@@ -33,27 +51,25 @@
         android:drawableStart="@android:drawable/ic_menu_search"
         android:drawablePadding="10dp"/>
 
-    <!-- RecyclerView Product -->
+    <!-- PRODUCT GRID -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerProduct"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
+        android:padding="8dp"
         android:clipToPadding="false"
-        tools:listitem="@layout/item_product"
-        tools:ignore="MissingClass" />
+        tools:listitem="@layout/item_product"/>
 
-    <!-- Bottom Button -->
+    <!-- ADD PRODUCT BUTTON -->
     <Button
         android:id="@+id/btnAddProduct"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
+        android:layout_margin="16dp"
         android:text="Tambah Produk Baru"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
-        android:backgroundTint="#5B8DEF"
-        android:layout_margin="16dp"/>
+        android:backgroundTint="#5B8DEF"/>
 
 </LinearLayout>

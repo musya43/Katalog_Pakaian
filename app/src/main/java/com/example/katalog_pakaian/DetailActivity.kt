@@ -1,5 +1,6 @@
 package com.example.katalog_pakaian
 
+//import android.R.attr.rating
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -8,7 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.katalog_pakaian.CartActivity
-import kotlin.jvm.java
+//import kotlin.jvm.java
 
 class DetailActivity : AppCompatActivity() {
 
@@ -21,18 +22,33 @@ class DetailActivity : AppCompatActivity() {
         val txtPrice = findViewById<TextView>(R.id.txtDetailPrice)
         val txtDesc = findViewById<TextView>(R.id.txtDetailDesc)
         val btnCart = findViewById<Button>(R.id.btnCart)
+        val txtRating = findViewById<TextView>(R.id.txtDetailRating)
 
         val name = intent.getStringExtra("name")
         val price = intent.getStringExtra("price")
         val image = intent.getIntExtra("image", 0)
         val desc = intent.getStringExtra("description")
+        val rating = intent.getFloatExtra("rating", 0f)
 
         imgProduct.setImageResource(image)
         txtName.text = name
         txtPrice.text = price
         txtDesc.text = desc
+        txtRating.text = "⭐ $rating"
 
         btnCart.setOnClickListener {
+
+            val product = Product(
+                0,
+                name ?: "",
+                price ?: "",
+                rating,
+                image,
+                desc ?: ""
+            )
+
+            // tambah ke cart
+            CartManager.cartItems.add(product)
 
             Toast.makeText(
                 this,
@@ -40,7 +56,9 @@ class DetailActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
 
-            startActivity(Intent(this, CartActivity::class.java))
+            startActivity(
+                Intent(this, CartActivity::class.java)
+            )
         }
     }
 }

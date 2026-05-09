@@ -40,6 +40,15 @@
             android:textStyle="bold"
             android:layout_marginTop="4dp"/>
 
+        <!-- Rating -->
+        <TextView
+            android:id="@+id/txtRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="⭐ 4.8"
+            android:textStyle="bold" />
+
         <ImageButton
             android:id="@+id/btnDelete"
             android:layout_width="40dp"
